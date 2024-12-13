@@ -36,20 +36,25 @@ class Route {
     // ROUTES
 
     private static function route_common() {
-        if (Session::$access != 1) controller_login();
-        else if (Route::$path == 'logout') Session::logout();
-        else if (Route::$path == 'plots') controller_plots();
+        if (Session::$access != 1) return controller_login();
+
+        switch (Route::$path) {
+            case 'logout': return Session::logout();
+            case 'plots': return controller_plots();
+            case 'users': return controller_users();
+            default: throw new \http\Exception\BadUrlException();
+        }
     }
 
     public static function route_call($path, $act, $data) {
         // routes
-        if ($path == 'auth') $result = controller_auth($act, $data);
-        else if ($path == 'plot') $result = controller_plot($act, $data);
-        else if ($path == 'search') $result = controller_search($act, $data);
-        else $result = [];
-        // output
-        echo json_encode($result, true);
-        exit();
+        switch ($path) {
+            case 'auth': return controller_auth($act, $data);
+            case 'plot': return controller_plot($act, $data);
+            case 'user': return controller_user($act, $data);
+            case 'search': return controller_search($act, $data);
+            default: return [];
+        }
     }
 
 }

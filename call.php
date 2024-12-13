@@ -23,4 +23,4 @@ $act = $location['act'] ?? NULL;
 // SESSION
 
 Session::init(1);
-Route::route_call($dpt, $act, $data);
+echo json_encode(Route::route_call($dpt, $act, $data));

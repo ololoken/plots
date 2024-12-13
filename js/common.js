@@ -157,6 +157,24 @@ let common = {
             html('table', result.html);
         });
     },
+
+    //users
+
+    user_edit_window(user_id, e) {
+        cancel_event(e);
+        common.menu_popup_hide_all('all');
+
+        let data = { user_id };
+        let location = {dpt: 'user', act: 'edit_window'};
+
+        request({location, data }, (result) => {
+            common.modal_show(400, result.html);
+        });
+    },
+
+    user_edit_update(user_id) {
+        throw 'not implemented'
+    }
 }
 
 add_event(document, 'DOMContentLoaded', common.init);

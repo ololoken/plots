@@ -1,5 +1,4 @@
 <?php
-
 // INIT
 
 require('./cfg/general.inc.php');

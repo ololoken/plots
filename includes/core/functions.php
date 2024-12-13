@@ -26,7 +26,7 @@ function flt_input($var) {
     return str_replace(['\\', "\0", "'", '"', "\x1a", "\x00"], ['\\\\', '\\0', "\\'", '\\"', '\\Z', '\\Z'], $var);
 }
 
-function generate_rand_str($length, $type = 'hexadecimal') {
+function generate_rand_str($length, $type = 'hexadecimal'): string {
     // vars
     $str = '';
     if ($type == 'decimal') $chars = '0123456789';
@@ -54,7 +54,7 @@ function generate_rand_str($length, $type = 'hexadecimal') {
     return $str;
 }
 
-function error_response($code, $msg, $data = []) {
+function error_response($code, $msg, $data = []): array {
     $result['error_code'] = $code;
     $result['error_msg'] = $msg;
     if ($data) $result['error_data'] = $data;
